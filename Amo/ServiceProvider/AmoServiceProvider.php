@@ -3,7 +3,6 @@
 namespace More\Amo\ServiceProvider;
 
 use Infrastructure\ServiceProvider\AbstractServiceProvider;
-use More\Amo\OldApi\AmoOldApiClient;
 use More\Amo\Services\AmoClient;
 use More\Amo\Services\AmoConfig;
 
@@ -39,16 +38,6 @@ class AmoServiceProvider extends AbstractServiceProvider
                 $container->getParameter('integrations.amo.login'),
                 $container->getParameter('integrations.amo.hash'),
                 $container->getParameter('integrations.amo.enabled'),
-            );
-        });
-
-        $container->share(AmoOldApiClient::class, static function () use ($container) {
-            return new AmoOldApiClient(
-                $container->getParameter('integrations.amo.host'),
-                $container->getParameter('integrations.amo.domain'),
-                $container->getParameter('integrations.amo.login'),
-                $container->getParameter('integrations.amo.hash'),
-                $container->getParameter('integrations.amo.enabled')
             );
         });
     }
